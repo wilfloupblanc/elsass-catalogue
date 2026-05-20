@@ -22,6 +22,8 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
       - name: Build APK
         run: eas build -p android --profile preview --non-interactive
+        env:
+          EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
       - name: Get APK URL and download
         run: |
           APK_URL=$(eas build:list --platform android --limit 1 --json --non-interactive | jq -r '.[0].artifacts.buildUrl')

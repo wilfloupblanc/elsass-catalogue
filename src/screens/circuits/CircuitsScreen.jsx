@@ -7,13 +7,16 @@ import {useState} from "react";
 export default function CircuitsScreen() {
     const {data} = useGetAllCircuitsQuery()
     const {width} = useWindowDimensions()
-    const circuits = data?.circuits
+    const circuits = data?.circuits?.filter(c => c.is_active === 1)
     const cardWidth = (width - 24 - 30) / 4
     const [selectedCountry, setSelectedCountry] = useState(null)
-    const countries = circuits ? [...new Set(circuits.map(c => c.country))] : []
-    const filteredCircuits = selectedCountry
+    const countries = circuits ? [...new Set(circuits.map(c => c.country))].sort((a, b) => a.localeCompare(b, 'fr')) : []
+    const filteredCircuits = (selectedCountry
         ? circuits?.filter(c => c.country === selectedCountry)
-        : circuits
+        : circuits)?.slice().sort((a, b) => {
+        if (a.country !== b.country) return a.country.localeCompare(b.country, 'fr')
+        return a.name.localeCompare(b.name, 'fr')
+    })
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1a1a' }}>
             <TabBar/>

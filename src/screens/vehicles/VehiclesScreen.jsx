@@ -15,7 +15,12 @@ export default function VehiclesScreen() {
     const category = categories?.vehiclecategories?.slice().sort((a, b) => a.name.localeCompare(b.name))
     const filteredVehicles = (selectedCategory
         ? vehicles?.filter(v => v.category_id === selectedCategory)
-        : vehicles)?.slice().sort((a, b) => a.name.localeCompare(b.name))
+        : vehicles)?.slice().sort((a, b) => {
+        const catA = category?.find(c => c.id === a.category_id)?.name ?? ''
+        const catB = category?.find(c => c.id === b.category_id)?.name ?? ''
+        if (catA !== catB) return catA.localeCompare(catB, 'fr')
+        return a.name.localeCompare(b.name, 'fr')
+    })
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1a1a' }}>
             <TabBar/>

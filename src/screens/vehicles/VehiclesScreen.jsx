@@ -12,10 +12,10 @@ export default function VehiclesScreen() {
     const { width } = useWindowDimensions()
     const cardWidth = (width - 24 - 30) / 4
     const vehicles = data?.vehicles?.filter(v => v.is_active === 1)
-    const category = categories?.vehiclecategories
-    const filteredVehicles = selectedCategory
+    const category = categories?.vehiclecategories?.slice().sort((a, b) => a.name.localeCompare(b.name))
+    const filteredVehicles = (selectedCategory
         ? vehicles?.filter(v => v.category_id === selectedCategory)
-        : vehicles
+        : vehicles)?.slice().sort((a, b) => a.name.localeCompare(b.name))
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: '#1a1a1a' }}>
             <TabBar/>
@@ -49,7 +49,7 @@ export default function VehiclesScreen() {
                 renderItem={({ item }) => (
                     <VehiclesCard
                         vehicle={item}
-                        category={category?.find(c => c.name === item.category_name)}
+                        category={category?.find(c => c.id === item.category_id)}
                         width={cardWidth}
                     />
                 )}

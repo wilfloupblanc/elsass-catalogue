@@ -49,7 +49,7 @@ export default function VehiclesScreen() {
                 renderItem={({ item }) => (
                     <VehiclesCard
                         vehicle={item}
-                        category={category?.find(c => c.id === item.category_id)}
+                        category={category?.find(c => c.name === item.category_name)}
                         width={cardWidth}
                     />
                 )}

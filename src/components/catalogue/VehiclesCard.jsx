@@ -50,25 +50,25 @@ export function VehiclesCard({ vehicle, category, width }) {
                 <View style={styles.divider} />
                 <View style={styles.statsGrid}>
                     <View style={styles.statItem}>
-                        <Text style={styles.statVal}>{vehicle.horsepower} ch</Text>
                         <Text style={styles.statLabel}>Puissance</Text>
+                        <Text style={styles.statVal}>{vehicle.horsepower} ch</Text>
                     </View>
                     <View style={styles.statItem}>
-                        <Text style={styles.statVal}>{vehicle.max_speed} km/h</Text>
                         <Text style={styles.statLabel}>Vitesse max</Text>
+                        <Text style={styles.statVal}>{vehicle.max_speed} km/h</Text>
                     </View>
                     <View style={styles.statItem}>
-                        <Text style={styles.statVal}>{vehicle.torque} Nm</Text>
                         <Text style={styles.statLabel}>Couple</Text>
+                        <Text style={styles.statVal}>{vehicle.torque} Nm</Text>
                     </View>
                     <View style={styles.statItem}>
-                        <Text style={styles.statVal}>{vehicle.power_to_weight} kg/ch</Text>
                         <Text style={styles.statLabel}>Poids/Puissance</Text>
+                        <Text style={styles.statVal}>{vehicle.power_to_weight} kg/ch</Text>
                     </View>
                 </View>
                 <View style={styles.divider} />
                 <Text style={styles.description}>
-                    {vehicle.description || "Aucune description disponible"}
+                    {vehicle.description || ""}
                 </Text>
             </View>
         </View>

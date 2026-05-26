@@ -11,7 +11,7 @@ export default function VehiclesScreen() {
     const {data: categories} = useGetAllCategoriesQuery()
     const { width } = useWindowDimensions()
     const cardWidth = (width - 24 - 30) / 4
-    const vehicles = data?.vehicles
+    const vehicles = data?.vehicles?.filter(v => v.is_active === 1)
     const category = categories?.vehiclecategories
     const filteredVehicles = selectedCategory
         ? vehicles?.filter(v => v.category_id === selectedCategory)

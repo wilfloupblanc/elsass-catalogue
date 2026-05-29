@@ -1,6 +1,6 @@
 {
   "name": "elsass-catalogue-front",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
   "scripts": {
     "start": "expo start",

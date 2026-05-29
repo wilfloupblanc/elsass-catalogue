@@ -19,11 +19,21 @@ export default function DrinkCard({ drink, category, width }) {
             <View style={styles.body}>
                 <Text style={styles.name}>{drink.name}</Text>
                 <View style={styles.subRow}>
-                    <Text style={styles.category}>{category?.name ?? "—"}</Text>
+                    <Text style={styles.category}>{category?.name ?? "?"}</Text>
                     <Text style={styles.meta}>{getFlag(drink.country_code)} {drink.country}</Text>
                 </View>
                 <View style={styles.divider} />
                 {drink.taste ? <Text style={styles.taste}>🍷 {drink.taste}</Text> : null}
+                <View style={styles.priceRow}>
+                    <View style={styles.priceItem}>
+                        <Text style={styles.priceLabel}>Normal</Text>
+                        <Text style={styles.priceVal}>{drink.price_normal ?? "—"} €</Text>
+                    </View>
+                    <View style={styles.priceItem}>
+                        <Text style={styles.priceLabel}>Membre</Text>
+                        <Text style={styles.priceValMember}>{drink.price_member ?? "—"} €</Text>
+                    </View>
+                </View>
                 <Text style={styles.description}>
                     {drink.description || "Aucune description disponible"}
                 </Text>
@@ -74,6 +84,28 @@ const styles = StyleSheet.create({
         fontSize: 11,
         color: '#c8bfb0',
         marginBottom: 6,
+    },
+    priceRow: {
+        flexDirection: 'row',
+        gap: 12,
+        marginBottom: 6,
+    },
+    priceItem: {
+        flexDirection: 'column',
+    },
+    priceLabel: {
+        fontSize: 10,
+        color: '#555',
+    },
+    priceVal: {
+        fontSize: 12,
+        fontWeight: '500',
+        color: '#c8bfb0',
+    },
+    priceValMember: {
+        fontSize: 12,
+        fontWeight: '500',
+        color: '#245e97',
     },
     description: {
         fontSize: 11,
